@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Star Imperium — Manual</title>
+<meta name="description" content="The official player manual for Star Imperium — rules, combat, abilities, deck building, the collection, and the campaign.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+  :root{
+    --bg:#eef1f6; --surface:#ffffff; --ink:#111621; --muted:#54607a;
+    --line:#dbe2ec; --accent:#0c6f7d; --accent-soft:#e2f1f3; --shadow:0 1px 2px rgba(17,22,33,.05),0 8px 24px rgba(17,22,33,.05);
+    --display:"Chakra Petch",ui-sans-serif,system-ui,sans-serif;
+    --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  }
+  @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+    --bg:#0a0e16; --surface:#111826; --ink:#e7ecf5; --muted:#94a1ba;
+    --line:#212b3d; --accent:#3bcad6; --accent-soft:#10303a; --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.35);
+  }}
+  :root[data-theme="dark"]{
+    --bg:#0a0e16; --surface:#111826; --ink:#e7ecf5; --muted:#94a1ba;
+    --line:#212b3d; --accent:#3bcad6; --accent-soft:#10303a; --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.65;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  a{color:var(--accent);text-underline-offset:2px}
+
+  header.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--surface) 88%,transparent);
+    backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  .top-inner{max-width:96ch;margin:0 auto;padding:14px 24px;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 20px;}
+  .wordmark{font-family:var(--display);font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    font-size:.98rem;color:var(--ink);text-decoration:none;}
+  .wordmark .glyph{color:var(--accent)}
+  .eyebrow{font-family:var(--display);font-weight:600;letter-spacing:.28em;text-transform:uppercase;
+    font-size:.66rem;color:var(--muted);}
+  nav.docnav{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;}
+  nav.docnav a{font-family:var(--display);font-weight:600;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;
+    text-decoration:none;color:var(--muted);padding:6px 11px;border:1px solid var(--line);border-radius:999px;white-space:nowrap;}
+  nav.docnav a:hover{color:var(--accent);border-color:var(--accent)}
+
+  .wrap{max-width:96ch;margin:0 auto;padding:0 24px 72px;}
+
+  .lede{padding:40px 0 8px;border-bottom:1px solid var(--line);margin-bottom:8px}
+  .lede h1{font-family:var(--display);font-weight:700;letter-spacing:.01em;font-size:clamp(1.7rem,4.5vw,2.5rem);
+    line-height:1.1;margin:.2em 0 .35em;text-wrap:balance;}
+  .lede p{color:var(--muted);font-size:1rem;max-width:70ch;margin:.2em 0 1.1em}
+  .meta{display:flex;flex-wrap:wrap;gap:6px 22px;font-size:.86rem;color:var(--muted);margin-bottom:1.2em}
+  .meta b{color:var(--ink);font-weight:600}
+
+  /* ---- table of contents ---- */
+  details.toc-mobile{display:none;margin:18px 0 0;border:1px solid var(--line);border-radius:12px;
+    background:var(--surface);box-shadow:var(--shadow);overflow:hidden;}
+  details.toc-mobile summary{cursor:pointer;list-style:none;padding:14px 18px;font-family:var(--display);
+    font-weight:700;letter-spacing:.04em;font-size:.86rem;text-transform:uppercase;color:var(--ink);
+    display:flex;align-items:center;justify-content:space-between;}
+  details.toc-mobile summary::-webkit-details-marker{display:none}
+  details.toc-mobile summary::after{content:"+";font-size:1.1rem;color:var(--accent);font-weight:700}
+  details.toc-mobile[open] summary::after{content:"–"}
+  details.toc-mobile ol{margin:0;padding:0 18px 16px 34px;}
+  details.toc-mobile li{margin:.5em 0;font-size:.92rem}
+  details.toc-mobile a{color:var(--ink);text-decoration:none}
+  details.toc-mobile a:hover{color:var(--accent)}
+
+  .layout{display:grid;grid-template-columns:1fr;gap:0;margin-top:24px;}
+
+  nav.toc-desktop{display:none;}
+
+  .content{min-width:0;}
+
+  section.doc{padding-top:52px;scroll-margin-top:84px;border-top:1px solid var(--line);}
+  section.doc:first-child{border-top:0;padding-top:8px;}
+  section.doc>h2{font-family:var(--display);font-weight:700;font-size:1.5rem;letter-spacing:.02em;
+    display:flex;align-items:baseline;gap:.6ch;margin:0 0 2px;text-wrap:balance;}
+  section.doc>h2 .tag{font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);
+    border:1px solid var(--accent);border-radius:4px;padding:3px 7px;font-weight:600;align-self:center}
+  .docsub{color:var(--muted);font-size:.92rem;margin:.4em 0 1.6em}
+
+  .content p{margin:.85em 0;max-width:70ch;}
+  .content ul,.content ol{margin:.7em 0;padding-left:1.3em;max-width:70ch;}
+  .content li{margin:.5em 0;}
+  .content h3{font-family:var(--display);font-weight:600;font-size:1.02rem;letter-spacing:.03em;
+    text-transform:uppercase;color:var(--accent);margin:1.8em 0 .5em;}
+  .content section.doc>*:first-child{margin-top:0}
+  .content strong{color:var(--ink);font-weight:600}
+  .content em{font-style:italic}
+
+  .divider{height:1px;background:var(--line);border:0;margin:0;}
+
+  footer{max-width:96ch;margin:0 auto;padding:28px 24px 56px;color:var(--muted);font-size:.85rem}
+  footer .contact{display:flex;flex-wrap:wrap;gap:4px 24px;margin-bottom:14px}
+  footer a{color:var(--accent)}
+  .disclaim{font-size:.78rem;line-height:1.55;color:var(--muted);border-top:1px solid var(--line);padding-top:14px}
+
+  @media (min-width:860px){
+    .layout{grid-template-columns:220px 1fr;gap:40px;align-items:start;}
+    details.toc-mobile{display:none !important;}
+    nav.toc-desktop{display:block;position:sticky;top:84px;align-self:start;max-height:calc(100vh - 110px);overflow:auto;}
+    nav.toc-desktop ol{list-style:none;margin:0;padding:0;counter-reset:toc;}
+    nav.toc-desktop li{counter-increment:toc;margin:2px 0;}
+    nav.toc-desktop a{display:flex;gap:.7ch;align-items:baseline;text-decoration:none;color:var(--muted);
+      font-size:.86rem;padding:6px 8px;border-radius:8px;line-height:1.3;}
+    nav.toc-desktop a::before{content:counter(toc,decimal-leading-zero);font-family:var(--display);
+      font-size:.68rem;color:var(--accent);font-weight:700;}
+    nav.toc-desktop a:hover{background:var(--accent-soft);color:var(--ink);}
+    nav.toc-desktop a.active{background:var(--accent-soft);color:var(--ink);font-weight:600;}
+  }
+
+  @media (max-width:859px){
+    details.toc-mobile{display:block;}
+  }
+
+  @media (max-width:520px){
+    nav.docnav{margin-left:0;width:100%}
+    .top-inner{padding:12px 16px}
+    .wrap,footer{padding-left:16px;padding-right:16px}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <a class="wordmark" href="#top">Star <span class="glyph">&#9670;</span> Imperium</a>
+    <span class="eyebrow">Player Manual</span>
+    <nav class="docnav" aria-label="Quick links">
+      <a href="#goal-winning">Goal</a>
+      <a href="#combat">Combat</a>
+      <a href="#abilities">Abilities</a>
+      <a href="#campaign">Campaign</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap" id="top">
+  <div class="lede">
+    <span class="eyebrow">Nastasi LLC &middot; Official Guide</span>
+    <h1>Star Imperium — Player Manual</h1>
+    <p>Everything you need to defend your planet, master combat, build decks, grow your collection, and conquer the galaxy. This manual reflects the in-game guide (Help screen) verbatim.</p>
+    <div class="meta">
+      <span><strong>Game:</strong> Star Imperium</span>
+      <span><strong>Publisher:</strong> Nastasi LLC</span>
+      <span><strong>Sections:</strong> 12</span>
+    </div>
+  </div>
+
+  <details class="toc-mobile">
+    <summary>Table of Contents</summary>
+    <ol>
+      <li><a href="#goal-winning">Goal &amp; Winning</a></li>
+      <li><a href="#the-turn">The Turn</a></li>
+      <li><a href="#resources">Resources</a></li>
+      <li><a href="#card-types">Card Types</a></li>
+      <li><a href="#combat">Combat</a></li>
+      <li><a href="#boarding-graveyard">Boarding &amp; Graveyard</a></li>
+      <li><a href="#abilities">Abilities</a></li>
+      <li><a href="#deck-building">Deck Building</a></li>
+      <li><a href="#collection-store">Collection &amp; Store</a></li>
+      <li><a href="#campaign">Campaign</a></li>
+      <li><a href="#legal">Legal</a></li>
+      <li><a href="#credits">Credits</a></li>
+    </ol>
+  </details>
+
+  <div class="layout">
+    <nav class="toc-desktop" aria-label="Sections">
+      <ol>
+        <li><a href="#goal-winning">Goal &amp; Winning</a></li>
+        <li><a href="#the-turn">The Turn</a></li>
+        <li><a href="#resources">Resources</a></li>
+        <li><a href="#card-types">Card Types</a></li>
+        <li><a href="#combat">Combat</a></li>
+        <li><a href="#boarding-graveyard">Boarding &amp; Graveyard</a></li>
+        <li><a href="#abilities">Abilities</a></li>
+        <li><a href="#deck-building">Deck Building</a></li>
+        <li><a href="#collection-store">Collection &amp; Store</a></li>
+        <li><a href="#campaign">Campaign</a></li>
+        <li><a href="#legal">Legal</a></li>
+        <li><a href="#credits">Credits</a></li>
+      </ol>
+    </nav>
+
+    <div class="content">
+
+      <!-- ============================ 1. GOAL & WINNING ============================ -->
+      <section class="doc" id="goal-winning">
+        <h2>Goal &amp; Winning <span class="tag">01 / 12</span></h2>
+        <p>Each player defends a planet that starts at <strong>25 health</strong>. You win the instant any of these happens:</p>
+        <ul>
+          <li><strong>Enemy planet destroyed</strong> — reduce your opponent's planet to 0. Ships alone can only grind a planet down to <strong>1</strong>; to land the killing blow your assault must include <strong>infantry</strong> — a soldier attacking the planet, or a ship carrying boarded soldiers.</li>
+          <li><strong>Ascension</strong> — raise your <em>own</em> planet to <strong>50</strong> (some cards heal your planet).</li>
+          <li><strong>Deck-out</strong> — your opponent has no cards left to draw.</li>
+          <li><strong>Concede</strong> — your opponent gives up.</li>
+        </ul>
+        <p>Protect your own planet while pushing the enemy's toward 0.</p>
+      </section>
+
+      <!-- ============================ 2. THE TURN ============================ -->
+      <section class="doc" id="the-turn">
+        <h2>The Turn <span class="tag">02 / 12</span></h2>
+        <p>Players alternate turns. At the <strong>start of your turn</strong>, automatically: draw a card (the very first player skips their first draw), refill your resource pools, regenerate your units' shields, and <strong>ready</strong> your units — clearing the <strong>spent</strong> state on any that attacked last turn — so they can act again.</p>
+        <p>Then, in any order, you may:</p>
+        <ul>
+          <li>Play <strong>one</strong> resource card.</li>
+          <li>Deploy ships, soldiers, and forces you can afford.</li>
+          <li>Attack with your ready ships.</li>
+        </ul>
+        <p>Newly played units are <strong>summoning sick</strong> — they can't attack the turn they arrive. Press <strong>End Turn</strong> when you're done. Your hand holds up to <strong>8</strong> cards and the board holds up to <strong>8</strong> units.</p>
+      </section>
+
+      <!-- ============================ 3. RESOURCES ============================ -->
+      <section class="doc" id="resources">
+        <h2>Resources <span class="tag">03 / 12</span></h2>
+        <p>There are five resource colors: <strong>Anti-Matter, Light, Crystals, Metals, and Organics</strong>. Every non-resource card costs an amount of a single color.</p>
+        <ul>
+          <li>Resource cards are <strong>free</strong> to play — but only <strong>one per turn</strong>, so your economy grows over several turns.</li>
+          <li>Playing a resource adds to that color's pool; pools refill each turn.</li>
+          <li>To play a Ship, Soldier, Force, or Action you need enough of its color in your pool.</li>
+        </ul>
+        <p>On your turn, cards you can afford (and have room for) are highlighted.</p>
+      </section>
+
+      <!-- ============================ 4. CARD TYPES ============================ -->
+      <section class="doc" id="card-types">
+        <h2>Card Types <span class="tag">04 / 12</span></h2>
+        <ul>
+          <li><strong>Ship</strong> — your main combatants; most ships can attack and block. A <strong>capital ship</strong> (Power 3+) is larger and can be boarded.</li>
+          <li><strong>Soldier</strong> — usually can't attack on its own (unless it has <em>Can Attack</em> or <em>First Strike</em>). Many carry special abilities; <em>boarding</em> soldiers can join a capital ship.</li>
+          <li><strong>Force</strong> — stays in play and applies a <strong>continuous</strong> effect while it's out (e.g. +Power/+Health to your units). Lose it and the bonus disappears. A Force isn't permanent: it <strong>loses 1 health at the start of each of your turns</strong> and is destroyed at 0, so its lifespan is its health. And <strong>only one Force can be in play at a time</strong> — playing any Force (by either player) destroys the one already on the table.</li>
+          <li><strong>Action</strong> — a one-shot effect that resolves immediately, then goes to the graveyard.</li>
+          <li><strong>Resource</strong> — your economy (see above).</li>
+        </ul>
+        <p>Ships, soldiers, and forces each take one of your 8 board slots; actions and resources don't.</p>
+      </section>
+
+      <!-- ============================ 5. COMBAT ============================ -->
+      <section class="doc" id="combat">
+        <h2>Combat <span class="tag">05 / 12</span></h2>
+        <p>Attack with a <strong>ready</strong> unit by targeting an <strong>enemy unit</strong> or the <strong>enemy planet</strong>. An attack always <strong>lands in full</strong> on its target — you can't dodge or redirect the hit itself.</p>
+        <ul>
+          <li><strong>Return fire</strong> — when you attack a unit, it shoots <strong>back</strong> at your attacker in the same exchange (and the defender may commit more of their units to pile on), so a unit fight is a mutual trade. <strong>Protector</strong> units can only defend, never attack.</li>
+          <li><strong>Defending your planet</strong> — a planet attack hits your planet in full <em>unless</em> you commit a unit to defend it: that defender <strong>intercepts</strong> the shot, taking the damage itself (your planet takes none, even against overkill) and trading fire with the attacker. Assign several and the <strong>first</strong> one takes the hit. Defending is optional.</li>
+          <li><strong>Acting on defense</strong> — you don't have to wait for your own turn to respond: while defending against an attack you may also play <strong>Action</strong> cards and activate your own units' abilities right then, resolving immediately.</li>
+          <li><strong>Spent after attacking</strong> — a unit that attacks is <strong>spent</strong> (shown faded) until the start of your next turn: it can't attack or defend again, though it can still be attacked and its abilities keep working.</li>
+          <li><strong>Shields first</strong> — damage is soaked by a unit's shield before its health. Shields regenerate at the start of your turn; health damage stays.</li>
+          <li><strong>First strike</strong> (<em>Ranged Attack</em>) — a first-striker fires before taking any return fire, so if its shot destroys the target it takes <strong>no</strong> damage back. If <strong>both</strong> sides have first strike, they fire simultaneously and both take damage.</li>
+        </ul>
+        <p>A hit only kills if it gets through the shield <strong>and</strong> meets the health.</p>
+      </section>
+
+      <!-- ============================ 6. BOARDING & GRAVEYARD ============================ -->
+      <section class="doc" id="boarding-graveyard">
+        <h2>Boarding &amp; Graveyard <span class="tag">06 / 12</span></h2>
+        <p><strong>Boarding</strong> — some soldiers have the <em>Board</em> ability. Drag such a soldier onto one of your <strong>own capital ships</strong> (a Ship with Power 3+) and it climbs aboard: it leaves the board and gives that ship <strong>+1 Power and +1 Health</strong> for as long as it's aboard. Board more soldiers for more bonus. A <strong>Kill-in-Transit</strong> attacker can pick boarded soldiers off one at a time, and if a boarded ship is destroyed its passengers go down with it.</p>
+        <p><strong>Graveyard</strong> — destroyed cards go to your graveyard (click your deck card to view it). You can <strong>Salvage</strong> a ship, soldier, or force from your graveyard back onto the board by paying its cost again and having a free board slot.</p>
+        <ul>
+          <li><strong>Resources are the exception</strong> — a destroyed resource is <strong>permanently removed</strong> from the match. It never enters the graveyard and can't be salvaged, so losing a resource is a permanent hit to your economy.</li>
+        </ul>
+      </section>
+
+      <!-- ============================ 7. ABILITIES ============================ -->
+      <section class="doc" id="abilities">
+        <h2>Abilities <span class="tag">07 / 12</span></h2>
+        <p>A card's text lists its abilities; the stats shown on a board unit already include any active buffs.</p>
+
+        <h3>Combat</h3>
+        <ul>
+          <li><strong>First Strike</strong> <em>(Ranged Attack)</em> — fires before taking return fire; no return damage if the shot kills. If both sides have it, they fire at once and both take damage.</li>
+          <li><strong>Can Attack</strong> — lets a soldier declare attacks (soldiers normally can't).</li>
+          <li><strong>Slayer</strong> — bonus combat damage against a specific kind of target (e.g. +2 vs Machines).</li>
+          <li><strong>Protector</strong> — can block/defend but never attacks.</li>
+          <li><strong>Protection</strong> — reduces incoming damage from a chosen kind of attacker.</li>
+          <li><strong>Kill in Transit</strong> — picks a boarded soldier off an enemy ship, one at a time.</li>
+          <li><strong>Attack Lock</strong> — while in play, affected units <em>can't declare attacks</em> (they can still defend).</li>
+          <li><strong>Devour</strong> — soldiers this unit destroys are <strong>exiled</strong> (removed from the game) instead of going to the graveyard, so they can never be salvaged.</li>
+          <li><strong>Unblockable</strong> — this unit's attacks can't be blocked; the damage always lands.</li>
+          <li><strong>Ship Defender</strong> — a soldier that can attack <em>and</em> defend against ships (soldiers normally can't engage ships at all).</li>
+          <li><strong>Capture on Kill</strong> — enemy soldiers this unit destroys switch to your side instead of dying.</li>
+          <li><strong>Board Capture</strong> — board your capital ship with this soldier to <em>capture</em> (not just destroy) an enemy capital ship it defeats.</li>
+        </ul>
+
+        <h3>Stealth</h3>
+        <ul>
+          <li><strong>Cloaking</strong> — enters play <strong>cloaked</strong> (the enemy sees only a card back) and <strong>can't be attacked</strong> while hidden. The cloak lifts when the unit attacks, defends, or is targeted by an action or ability, then re-cloaks at the end of the turn. Cloaked units can still be <em>targeted</em> by actions and abilities — doing so reveals them.</li>
+          <li><strong>Reveal Hidden</strong> — reveals the opponent's cloaked units (e.g. <em>Special Forces</em> uncloaks enemy units at the start of your turn).</li>
+        </ul>
+
+        <h3>Units &amp; Economy</h3>
+        <ul>
+          <li><strong>Boarding</strong> — a soldier that climbs aboard a friendly capital ship for <strong>+1 Power / +1 Health</strong>.</li>
+          <li><strong>Change to Ship</strong> — turns one of your soldiers into a ship.</li>
+          <li><strong>Clone</strong> — creates a copy of a unit.</li>
+          <li><strong>Spawn</strong> — creates temporary token units each turn (they vanish at end of turn).</li>
+          <li><strong>Ready</strong> — un-spends a unit so it can act again this turn.</li>
+          <li><strong>Draw</strong> — draw extra cards.</li>
+          <li><strong>Resource boost</strong> — adds to your resource pool to grow your economy faster.</li>
+          <li><strong>Prospect</strong> — look at the top 3 cards of your deck, take a resource card from them, and put the rest on the bottom.</li>
+          <li><strong>Salvage</strong> <em>(From Grave)</em> — returns a card from the graveyard to play.</li>
+          <li><strong>Assemble</strong> — combine your Constructs into ever-larger machines, building up toward the Colossus.</li>
+          <li><strong>Metamorph</strong> — grows a little each turn and, once past a health threshold, transforms into a bigger unit.</li>
+          <li><strong>Morph</strong> — immediately transforms a chosen friendly unit into another.</li>
+          <li><strong>Transport</strong> — <em>any</em> soldier may board this ship, not only ones with the Board ability.</li>
+          <li><strong>Search</strong> <em>(Tutor)</em> — search your deck for a card and take it (sometimes only if a condition is met, e.g. you control 3+ Rigs).</li>
+          <li><strong>Assimilate</strong> — sacrifice one of your Constructs to give this unit <strong>+1 Power / +1 Health</strong>.</li>
+          <li><strong>Resurrection</strong> — a boarding parasite that <em>returns to battle</em> when the enemy ship it destroyed goes down, instead of dying with it.</li>
+        </ul>
+
+        <h3>Effects</h3>
+        <ul>
+          <li><strong>Damage</strong> — deals direct damage to a target.</li>
+          <li><strong>Restore Health / Shield</strong> — heals a wounded unit or refills its shield.</li>
+          <li><strong>Planet Health</strong> — heals your planet (toward Ascension) or damages the enemy's.</li>
+          <li><strong>Infect</strong> — a decay effect: the infected unit loses health every turn.</li>
+          <li><strong>Doom</strong> — marks a unit to be destroyed at the end of the turn.</li>
+          <li><strong>Take Control</strong> — steal an enemy unit (e.g. seize an enemy capital ship).</li>
+          <li><strong>Chaos</strong> — a random, disruptive effect.</li>
+          <li><strong>Sacrifice</strong> — forces a player to give up their weakest unit each turn.</li>
+          <li><strong>Seal Planet</strong> — while in play, a planet <em>can't gain health</em> — shuts down enemy Ascension healing.</li>
+          <li><strong>Enemy Sacrifice</strong> — forces the opponent to give up a card of their choice (e.g. after this unit successfully attacks a planet).</li>
+          <li><strong>Reveal</strong> — reveals the enemy's hand.</li>
+        </ul>
+
+        <h3>Control &amp; Disruption</h3>
+        <ul>
+          <li><strong>Erase</strong> — <strong>exiles</strong> a target enemy unit (or a card from their graveyard): it's removed from the game for good and can never return, not even by salvage.</li>
+          <li><strong>Silence</strong> — shuts off a target enemy unit's abilities for as long as the silencing card stays in play; remove the source and the abilities come back.</li>
+          <li><strong>Mill</strong> — each turn, exiles cards from the top of the enemy's deck, pushing them toward a <em>deck-out</em> loss.</li>
+          <li><strong>Deck Erase</strong> <em>(Null Field)</em> — each turn, the affected player exiles the top card of their own deck, grinding them toward a deck-out.</li>
+          <li><strong>Suppress Reload</strong> — while in play, resources don't reload at the start of the turn.</li>
+        </ul>
+
+        <h3>Forces &amp; Passives</h3>
+        <ul>
+          <li><strong>Force buffs</strong> <em>(Power / Health / Shield)</em> — a Force that continuously boosts your units while it's in play; some grow the bonus each turn.</li>
+          <li><strong>Banding</strong> — units that share this card's name reinforce each other's health.</li>
+          <li><strong>Resilience</strong> — immune to Force stat effects (Force +/− Power/Health/Shield never apply to it).</li>
+        </ul>
+      </section>
+
+      <!-- ============================ 8. DECK BUILDING ============================ -->
+      <section class="doc" id="deck-building">
+        <h2>Deck Building <span class="tag">08 / 12</span></h2>
+        <p>Open <strong>Deck Builder</strong> from the main menu to build and edit decks.</p>
+        <p>A deck is <strong>battle-ready</strong> — and can be taken into a match — only when it meets <strong>all</strong> of these:</p>
+        <ul>
+          <li>Exactly <strong>50</strong> cards.</li>
+          <li>At most <strong>4 copies</strong> of any non-resource card (resource cards have <strong>no</strong> per-card limit — stack your economy).</li>
+          <li>At most <strong>2 copies</strong> of any <strong>Champion</strong> — a deck's signature units are capped tighter than everything else.</li>
+          <li>At most <strong>2 Force cards total</strong> (all Forces counted together, not per name) — they're powerful global effects, and only one Force can be in play at a time anyway.</li>
+          <li>Only cards you <strong>own</strong>.</li>
+        </ul>
+        <p>A deck that breaks any of these can't be selected on the Pre-Battle screen. Decks are also color-themed — lean into one or two resource colors so your cards' costs match what your resources produce.</p>
+        <p>Pick your deck before a match on the <strong>Pre-Battle</strong> screen.</p>
+      </section>
+
+      <!-- ============================ 9. COLLECTION & STORE ============================ -->
+      <section class="doc" id="collection-store">
+        <h2>Collection &amp; Store <span class="tag">09 / 12</span></h2>
+        <p>Your <strong>collection</strong> is every card you own — the pool you build decks from. It grows and shrinks <em>outside</em> of battle.</p>
+
+        <h3>Earning Cards</h3>
+        <ul>
+          <li><strong>Conquest</strong> — the first time you capture a campaign planet, you gain copies of <strong>its color's resource card</strong> (more for higher-rated worlds).</li>
+          <li><strong>First win of the day</strong> — your first victory each day pays a bonus of your faction's resource cards.</li>
+          <li><strong>Daily mission</strong> — completing the day's target grants a random <strong>non-resource</strong> card of that planet's color, favoring ones you don't own yet.</li>
+          <li><strong>Store — Buy</strong> — spend resource cards on a <strong>pack</strong> (random cards, one guaranteed rare) or a full <strong>starter deck</strong>.</li>
+          <li><strong>Store — Exchange</strong> — trade resource cards for a specific card you want.</li>
+          <li><strong>Trade</strong> <em>(online)</em> — swap cards with another player; both sides must agree before anything moves.</li>
+          <li><strong>Champions</strong> stay <strong>locked</strong> until you <strong>conquer a warlord's entire domain</strong> — then that warlord's champion becomes available to build with and buy.</li>
+        </ul>
+
+        <h3>Spending &amp; Losing Cards</h3>
+        <ul>
+          <li><strong>Store — Salvage</strong> — sell spare cards for resource cards of that card's color.</li>
+          <li><strong>Buying</strong> and <strong>exchanging</strong> spend your resource cards as currency.</li>
+          <li><strong>Trading</strong> gives away the cards you offer.</li>
+          <li><strong>Losing a planet</strong> forfeits the resource cards it was paying you.</li>
+        </ul>
+
+        <p><strong>Resource cards are your currency</strong> — the same five-color resource cards you play in battle are what you spend in the Store, so each one you keep is both economy and buying power.</p>
+      </section>
+
+      <!-- ============================ 10. CAMPAIGN ============================ -->
+      <section class="doc" id="campaign">
+        <h2>Campaign <span class="tag">10 / 12</span></h2>
+        <p>The <strong>campaign</strong> is a living galaxy of five faction spokes. You conquer enemy planets by winning battles, while rival factions push back — expanding and laying siege to your worlds each galaxy turn.</p>
+        <p><strong>War Chest (Points)</strong> — each galaxy turn your planets pay income (each planet's <em>rating</em>) minus <strong>upkeep</strong> (2 Points for every planet you hold beyond the first 5). Spend Points on the actions below from a planet's inspector.</p>
+        <p><strong>Sieges</strong> — a rival can besiege a border planet you own. You have <strong>2 galaxy turns</strong> to <strong>Defend World</strong> before the siege auto-resolves and the planet can fall. You get <strong>one assault per galaxy turn</strong>, but <strong>defending never uses it</strong> — you can always defend.</p>
+        <p><strong>Fortify</strong> — strengthens a planet you own (max <strong>level 3</strong>) when it's besieged. The cost rises per level (<strong>4 / 8 / 12 Points</strong>) and the bonuses are <strong>cumulative</strong>:</p>
+        <ul>
+          <li><strong>Level 1</strong> — your planet starts a defense with <strong>+5 health</strong>.</li>
+          <li><strong>Level 2</strong> — <em>also</em> <strong>+1 starting resource</strong>.</li>
+          <li><strong>Level 3</strong> — <em>also</em> <strong>+1 card</strong> in your opening hand.</li>
+        </ul>
+        <p>Fortification is <strong>lost if the planet changes hands</strong>.</p>
+        <p><strong>Scout</strong> (<strong>3 Points</strong>) — reveal an enemy planet's defenders so you can see what you'd face.</p>
+        <p><strong>Garrison</strong> (<strong>5 Points</strong>) — assign one of your saved decks to defend a planet, so a siege there is fought with that deck instead of the default.</p>
+        <p><strong>Spoils</strong> — conquering a planet adds its color's resource cards to your collection; losing one forfeits them. See <a href="#collection-store">Collection &amp; Store</a> for the full picture.</p>
+      </section>
+
+      <!-- ============================ 11. LEGAL ============================ -->
+      <section class="doc" id="legal">
+        <h2>Legal <span class="tag">11 / 12</span></h2>
+        <p><strong>© 2026 Nastasi LLC. All rights reserved.</strong><br>
+        StarImperium and all of its content — code, art, cards, names, music, and video — are owned by Nastasi LLC or its licensors.</p>
+
+        <h3>License</h3>
+        <p>You have a personal, non-commercial license to play the game. Please don't reverse-engineer, redistribute, or sell it, and don't use cheats, bots, or exploits in online play.</p>
+
+        <h3>Privacy</h3>
+        <ul>
+          <li>Your progress and settings are saved <strong>on your device</strong> — not sent to us.</li>
+          <li>Online multiplayer and trading run through <strong>Steam</strong>; only the data needed to connect you to a match or trade is exchanged.</li>
+          <li>The game keeps a <strong>local crash log</strong> on your device to help fix bugs.</li>
+          <li>We use <strong>no third-party analytics, ads, or tracking</strong>.</li>
+        </ul>
+
+        <h3>No Warranty</h3>
+        <p>The game is provided "as is," without warranty. To the fullest extent allowed by law, Nastasi LLC is not liable for indirect or incidental damages. This agreement is governed by the laws of the State of California.</p>
+
+        <h3>Full Documents</h3>
+        <p>The complete End User License Agreement and Privacy Policy are available on our Steam store page (effective September 1, 2026). You can also read the full <a href="https://nastasin.github.io/starimperium-legal/">Privacy Policy &amp; EULA</a> online.</p>
+
+        <h3>Contact</h3>
+        <p>Nastasi LLC — <a href="mailto:nastigamesdev@gmail.com">nastigamesdev@gmail.com</a></p>
+      </section>
+
+      <!-- ============================ 12. CREDITS ============================ -->
+      <section class="doc" id="credits">
+        <h2>Credits <span class="tag">12 / 12</span></h2>
+
+        <h3>Development</h3>
+        <ul>
+          <li>Nick Nastasi</li>
+          <li>Nico Nastasi</li>
+        </ul>
+
+        <h3>Art</h3>
+        <ul>
+          <li>Alexander Levett</li>
+          <li>Elden Ardiente</li>
+          <li>iStock</li>
+          <li>Ken Turner</li>
+          <li>Marius Siregiejew (noistromo)</li>
+          <li>Markus Vogt</li>
+          <li>Rodrigo Machini</li>
+          <li>Videezy</li>
+          <li>Videvo</li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="contact">
+    <span><strong>Nastasi LLC</strong></span>
+    <span><a href="mailto:nastigamesdev@gmail.com">nastigamesdev@gmail.com</a></span>
+    <span><a href="https://nastasin.github.io/starimperium-legal/">Privacy Policy &amp; EULA</a></span>
+  </div>
+  <p class="disclaim">&copy; 2026 Nastasi LLC. Star Imperium and its content are trademarks of Nastasi LLC. This manual reproduces the in-game player guide (Help screen) verbatim, for reference outside the game.</p>
+</footer>
+
+</body>
+</html>
