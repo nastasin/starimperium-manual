@@ -194,6 +194,7 @@
           <li><strong>Ascension</strong> — raise your <em>own</em> planet to <strong>50</strong> (some cards heal your planet).</li>
           <li><strong>Deck-out</strong> — your opponent has no cards left to draw.</li>
           <li><strong>Concede</strong> — your opponent gives up.</li>
+          <li><strong>Turn limit</strong> — if the game runs very long and neither planet falls, it ends at the turn cap: in a campaign siege the attacker loses, and an even match is a <strong>draw</strong>.</li>
         </ul>
         <p>Protect your own planet while pushing the enemy's toward 0.</p>
       </section>
@@ -206,7 +207,7 @@
         <ul>
           <li>Play <strong>one</strong> resource card.</li>
           <li>Deploy ships, soldiers, and forces you can afford.</li>
-          <li>Attack with your ready ships.</li>
+          <li>Attack with your ready <strong>units</strong> — both ships and soldiers.</li>
         </ul>
         <p>Newly played units are <strong>summoning sick</strong> — they can't attack the turn they arrive. Press <strong>End Turn</strong> when you're done. Your hand holds up to <strong>8</strong> cards and the board holds up to <strong>8</strong> units.</p>
       </section>
@@ -227,8 +228,8 @@
       <section class="doc" id="card-types">
         <h2>Card Types <span class="tag">04 / 12</span></h2>
         <ul>
-          <li><strong>Ship</strong> — your main combatants; most ships can attack and block. A <strong>capital ship</strong> (Power 3+) is larger and can be boarded.</li>
-          <li><strong>Soldier</strong> — usually can't attack on its own (unless it has <em>Can Attack</em> or <em>First Strike</em>). Many carry special abilities; <em>boarding</em> soldiers can join a capital ship.</li>
+          <li><strong>Ship</strong> — your main combatants; most can attack and block. A <strong>capital ship</strong> (any Ship that isn't a support craft) can be boarded and fights other ships and planets, but can't attack soldiers; smaller <strong>support ships</strong> share the ground front and can engage soldiers too.</li>
+          <li><strong>Soldier</strong> — ground troops. They attack enemy <strong>soldiers</strong> and the <strong>planet</strong> on their own; attacking enemy <strong>ships</strong> needs the <em>Can Attack Ships</em> ability. Many carry special abilities; <em>boarding</em> soldiers can join a capital ship.</li>
           <li><strong>Force</strong> — stays in play and applies a <strong>continuous</strong> effect while it's out (e.g. +Power/+Health to your units). Lose it and the bonus disappears. A Force isn't permanent: it <strong>loses 1 health at the start of each of your turns</strong> and is destroyed at 0, so its lifespan is its health. And <strong>only one Force can be in play at a time</strong> — playing any Force (by either player) destroys the one already on the table.</li>
           <li><strong>Action</strong> — a one-shot effect that resolves immediately, then goes to the graveyard.</li>
           <li><strong>Resource</strong> — your economy (see above).</li>
@@ -242,7 +243,7 @@
         <p>Attack with a <strong>ready</strong> unit by targeting an <strong>enemy unit</strong> or the <strong>enemy planet</strong>. An attack always <strong>lands in full</strong> on its target — you can't dodge or redirect the hit itself.</p>
         <ul>
           <li><strong>Return fire</strong> — when you attack a unit, it shoots <strong>back</strong> at your attacker in the same exchange (and the defender may commit more of their units to pile on), so a unit fight is a mutual trade. <strong>Protector</strong> units can only defend, never attack.</li>
-          <li><strong>Defending your planet</strong> — a planet attack hits your planet in full <em>unless</em> you commit a unit to defend it: that defender <strong>intercepts</strong> the shot, taking the damage itself (your planet takes none, even against overkill) and trading fire with the attacker. Assign several and the <strong>first</strong> one takes the hit. Defending is optional.</li>
+          <li><strong>Defending your planet</strong> — a planet attack hits your planet in full <em>unless</em> a <strong>Protector</strong> intercepts it (only a Protector can body-block a planet attack): the Protector takes the damage itself (your planet takes none, even against overkill) and trades fire with the attacker. Commit several and the <strong>first</strong> one takes the hit. Defending is optional.</li>
           <li><strong>Acting on defense</strong> — you don't have to wait for your own turn to respond: while defending against an attack you may also play <strong>Action</strong> cards and activate your own units' abilities right then, resolving immediately.</li>
           <li><strong>Spent after attacking</strong> — a unit that attacks is <strong>spent</strong> (shown faded) until the start of your next turn: it can't attack or defend again, though it can still be attacked and its abilities keep working.</li>
           <li><strong>Shields first</strong> — damage is soaked by a unit's shield before its health. Shields regenerate at the start of your turn; health damage stays.</li>
@@ -254,7 +255,7 @@
       <!-- ============================ 6. BOARDING & GRAVEYARD ============================ -->
       <section class="doc" id="boarding-graveyard">
         <h2>Boarding &amp; Graveyard <span class="tag">06 / 12</span></h2>
-        <p><strong>Boarding</strong> — some soldiers have the <em>Board</em> ability. Drag such a soldier onto one of your <strong>own capital ships</strong> (a Ship with Power 3+) and it climbs aboard: it leaves the board and gives that ship <strong>+1 Power and +1 Health</strong> for as long as it's aboard. Board more soldiers for more bonus. A <strong>Kill-in-Transit</strong> attacker can pick boarded soldiers off one at a time, and if a boarded ship is destroyed its passengers go down with it.</p>
+        <p><strong>Boarding</strong> — some soldiers have the <em>Board</em> ability. Drag such a soldier onto one of your <strong>own capital ships</strong> (any Ship that isn't a support craft) and it climbs aboard: it leaves the board and gives that ship <strong>+1 Power and +1 Health</strong> for as long as it's aboard. Board more soldiers for more bonus. A <strong>Kill-in-Transit</strong> attacker can pick boarded soldiers off one at a time, and if a boarded ship is destroyed its passengers go down with it.</p>
         <p><strong>Graveyard</strong> — destroyed cards go to your graveyard (click your deck card to view it). You can <strong>Salvage</strong> a ship, soldier, or force from your graveyard back onto the board by paying its cost again and having a free board slot.</p>
         <ul>
           <li><strong>Resources are the exception</strong> — a destroyed resource is <strong>permanently removed</strong> from the match. It never enters the graveyard and can't be salvaged, so losing a resource is a permanent hit to your economy.</li>
@@ -269,9 +270,10 @@
         <h3>Combat</h3>
         <ul>
           <li><strong>First Strike</strong> <em>(Ranged Attack)</em> — fires before taking return fire; no return damage if the shot kills. If both sides have it, they fire at once and both take damage.</li>
-          <li><strong>Can Attack</strong> — lets a soldier declare attacks (soldiers normally can't).</li>
+          <li><strong>Can Attack Ships</strong> — lets a soldier attack enemy ships (soldiers can already attack soldiers and the planet).</li>
+          <li><strong>Can Attack Soldiers</strong> — lets a ship attack enemy soldiers (capital ships normally can't).</li>
           <li><strong>Slayer</strong> — bonus combat damage against a specific kind of target (e.g. +2 vs Machines).</li>
-          <li><strong>Protector</strong> — can block/defend but never attacks.</li>
+          <li><strong>Protector</strong> — can block/defend but never attacks; only a Protector can intercept an attack aimed at a friendly soldier or your planet (some protect only while you control a matching unit).</li>
           <li><strong>Protection</strong> — reduces incoming damage from a chosen kind of attacker.</li>
           <li><strong>Kill in Transit</strong> — picks a boarded soldier off an enemy ship, one at a time.</li>
           <li><strong>Attack Lock</strong> — while in play, affected units <em>can't declare attacks</em> (they can still defend).</li>
@@ -280,11 +282,14 @@
           <li><strong>Ship Defender</strong> — a soldier that can attack <em>and</em> defend against ships (soldiers normally can't engage ships at all).</li>
           <li><strong>Capture on Kill</strong> — enemy soldiers this unit destroys switch to your side instead of dying.</li>
           <li><strong>Board Capture</strong> — board your capital ship with this soldier to <em>capture</em> (not just destroy) an enemy capital ship it defeats.</li>
+          <li><strong>Displace</strong> — pins a target enemy unit: while this unit is in play (and hasn't attacked), the pinned unit can't attack or defend others.</li>
+          <li><strong>Self-Destruct</strong> — when this unit attacks a unit and deals damage, both are destroyed after combat (a kamikaze trade).</li>
+          <li><strong>Open Path</strong> — while in play, your <strong>ships' planet attacks can't be blocked</strong>.</li>
         </ul>
 
         <h3>Stealth</h3>
         <ul>
-          <li><strong>Cloaking</strong> — enters play <strong>cloaked</strong> (the enemy sees only a card back) and <strong>can't be attacked</strong> while hidden. The cloak lifts when the unit attacks, defends, or is targeted by an action or ability, then re-cloaks at the end of the turn. Cloaked units can still be <em>targeted</em> by actions and abilities — doing so reveals them.</li>
+          <li><strong>Cloaking</strong> — enters play <strong>cloaked</strong> (the enemy sees only a card back) and <strong>can't be attacked or targeted</strong> by the enemy while hidden — only board-wide effects can reach it. The cloak lifts when the unit <strong>attacks or defends</strong>, then re-cloaks at the end of the turn.</li>
           <li><strong>Reveal Hidden</strong> — reveals the opponent's cloaked units (e.g. <em>Special Forces</em> uncloaks enemy units at the start of your turn).</li>
         </ul>
 
@@ -318,6 +323,9 @@
           <li><strong>Take Control</strong> — steal an enemy unit (e.g. seize an enemy capital ship).</li>
           <li><strong>Chaos</strong> — a random, disruptive effect.</li>
           <li><strong>Sacrifice</strong> — forces a player to give up their weakest unit each turn.</li>
+          <li><strong>Cull</strong> — forces a player to give up their weakest <strong>soldier</strong> each turn.</li>
+          <li><strong>Death Discharge</strong> — when this unit dies, it deals damage to the enemy planet.</li>
+          <li><strong>Action Immune</strong> — this unit ignores hostile effects that come from <strong>Action</strong> cards.</li>
           <li><strong>Seal Planet</strong> — while in play, a planet <em>can't gain health</em> — shuts down enemy Ascension healing.</li>
           <li><strong>Enemy Sacrifice</strong> — forces the opponent to give up a card of their choice (e.g. after this unit successfully attacks a planet).</li>
           <li><strong>Reveal</strong> — reveals the enemy's hand.</li>
@@ -335,6 +343,7 @@
         <h3>Forces &amp; Passives</h3>
         <ul>
           <li><strong>Force buffs</strong> <em>(Power / Health / Shield)</em> — a Force that continuously boosts your units while it's in play; some grow the bonus each turn.</li>
+          <li><strong>Salvage Discount</strong> — a Force that halves the cost to salvage matching cards from the graveyard.</li>
           <li><strong>Banding</strong> — units that share this card's name reinforce each other's health.</li>
           <li><strong>Resilience</strong> — immune to Force stat effects (Force +/− Power/Health/Shield never apply to it).</li>
         </ul>
@@ -348,7 +357,7 @@
         <ul>
           <li>Exactly <strong>50</strong> cards.</li>
           <li>At most <strong>4 copies</strong> of any non-resource card (resource cards have <strong>no</strong> per-card limit — stack your economy).</li>
-          <li>At most <strong>2 copies</strong> of any <strong>Champion</strong> — a deck's signature units are capped tighter than everything else.</li>
+          <li>At most <strong>one ship Champion and one soldier Champion</strong> (a single copy of each) — Champions are singletons, one per combat layer.</li>
           <li>At most <strong>2 Force cards total</strong> (all Forces counted together, not per name) — they're powerful global effects, and only one Force can be in play at a time anyway.</li>
           <li>Only cards you <strong>own</strong>.</li>
         </ul>
@@ -431,24 +440,48 @@
       <!-- ============================ 12. CREDITS ============================ -->
       <section class="doc" id="credits">
         <h2>Credits <span class="tag">12 / 12</span></h2>
+        <p>We're grateful to the artists whose work became part of this game, and to those whose art inspired us along the way. If you believe your work appears here and isn't credited, please reach out at <a href="mailto:nastigamesdev@gmail.com">nastigamesdev@gmail.com</a> — we'll gladly add credit or remove it.</p>
 
         <h3>Development</h3>
         <ul>
           <li>Nick Nastasi</li>
-          <li>Nico Nastasi</li>
         </ul>
 
         <h3>Art</h3>
         <ul>
+          <li>adisresic</li>
           <li>Alexander Levett</li>
-          <li>Elden Ardiente</li>
-          <li>iStock</li>
-          <li>Ken Turner</li>
-          <li>Marius Siregiejew (noistromo)</li>
+          <li>axion</li>
+          <li>fszalai</li>
+          <li>gbtaylor</li>
+          <li>juliush</li>
+          <li>lazarosv</li>
+          <li>lngapv</li>
+          <li>Marius Siregiejew</li>
           <li>Markus Vogt</li>
-          <li>Rodrigo Machini</li>
-          <li>Videezy</li>
-          <li>Videvo</li>
+          <li>sinousxl</li>
+          <li>thanh nguyen</li>
+          <li>Unity</li>
+        </ul>
+
+        <h3>Audio</h3>
+        <ul>
+          <li>Adrian_Gomar</li>
+          <li>aharri6</li>
+          <li>AmeAngelofSin</li>
+          <li>CusconautA</li>
+          <li>FreyaMaluk</li>
+          <li>Glaneur de sons</li>
+          <li>lebaston100</li>
+          <li>LittleRobotSoundFactory</li>
+          <li>NickR2020</li>
+          <li>passAirmangrace</li>
+          <li>Pixabay</li>
+          <li>RunnerPack</li>
+          <li>Sikoses</li>
+          <li>tmkappelt</li>
+          <li>Tomlija</li>
+          <li>Universfield</li>
         </ul>
       </section>
 
